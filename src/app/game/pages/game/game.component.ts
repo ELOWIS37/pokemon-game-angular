@@ -3,6 +3,7 @@ import { getRandomItem } from 'src/app/helpers/random.helper';
 import { Pokemon } from '../../interfaces/pokemon.interface';
 import { PlayerService } from '../../services/player.service';
 import { PokemonService } from '../../services/pokemon.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -20,7 +21,7 @@ export class GameComponent implements OnInit {
   get score(): number {
     return this.playerService.score;
   }
-  
+
   get hearts(): Array<any> {
     return Array(this.playerService.lifes);
   }
@@ -48,7 +49,8 @@ export class GameComponent implements OnInit {
 
   constructor(
     private playerService: PlayerService,
-    private pokemonService: PokemonService
+    private pokemonService: PokemonService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -68,7 +70,14 @@ export class GameComponent implements OnInit {
       this.playerService.decreaseLifes();
       console.log('incorrect');
     }
-    
+    // Redirigir al component 'habilitatsEloyCast' amb el nom del pokemon
+    if (this.pokemonList.length > 0) {
+      const selectedPokemon = this.pokemonList.find(pokemon => pokemon.name === pokemonName);
+      if (selectedPokemon) {
+        this.router.navigate(['/habilitatsEloyCast', selectedPokemon.name]);
+      }
+    }
+
   }
 
   // this function es execute every time that user click in next game

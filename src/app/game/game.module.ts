@@ -6,6 +6,7 @@ import { MaterialModule } from '../material/material.module';
 import { GameComponent } from './pages/game/game.component';
 import { GameoverComponent } from './pages/gameover/gameover.component';
 import { PokemonViewComponent } from './components/pokemon-view/pokemon-view.component';
+import { HabilitatsEloyCastComponent } from './components/habilitats-eloy-cast/habilitats-eloy-cast.component';
 
 
 
@@ -13,7 +14,8 @@ import { PokemonViewComponent } from './components/pokemon-view/pokemon-view.com
   declarations: [
     GameComponent,
     GameoverComponent,
-    PokemonViewComponent
+    PokemonViewComponent,
+    HabilitatsEloyCastComponent
   ],
   imports: [
     CommonModule,
