@@ -1,10 +1,22 @@
-<div fxLayout="column"
-     fxLayoutAlign="space-between center">
-     <div>
-        <h1>Pokemon Game</h1>
-     </div>
+<div fxLayout="column" fxLayoutAlign="space-between center">
+  <div>
+    <h1>Pokemon Game</h1>
+  </div>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+    <form (ngSubmit)="onSubmit()" fxLayout="column">
+      <mat-form-field>
+        <input matInput placeholder="Pokemon" [(ngModel)]="pokemonInput" name="pokemonInput" required>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Buscar</button>
+    </form>
+  </div>
+  <div *ngIf="pokemonImage">
+    <img [src]="pokemonImage" alt="Img pokemon">
+  </div>
+</div>
 
-     <div fxLayout="row"
+<br>
+<div fxLayout="row"
           fxLayout.xs="column"
           fxLayoutAlign="center center"
           fxLayoutGap="30px">
@@ -27,4 +39,3 @@
             SCORES
         </button>
      </div>
-</div>

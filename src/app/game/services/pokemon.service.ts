@@ -9,7 +9,7 @@ import { getRandomItem, removeRandomItem } from 'src/app/helpers/random.helper';
   providedIn: 'root'
 })
 export class PokemonService {
-  
+
   private url: string = environment.pokeApiUrl;
 
   constructor(
@@ -25,6 +25,10 @@ export class PokemonService {
   }
   getPokemon(name: string): Observable<Pokemon> {
     return this._http.get<Pokemon>(`${ this.url }/pokemon/${ name }`);
+  }
+  getPokemonDetalls(pokemonInput: string): Promise<any> {
+    const url = '${this.apiUrl}/pokemon/${pokemonInput}';
+    return this._http.get(url).toPromise();
   }
 
   // lenght is the number of the random pokemon array length

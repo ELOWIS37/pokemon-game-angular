@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PokemonService} from "../../game/services/pokemon.service";
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  pokemonInput: string = '';
+  pokemonImage: string = '';
+
+  constructor(private pokemonService: PokemonService) { }
+
+  onSubmit() {
+    this.pokemonService.getPokemonDetalls(this.pokemonInput)
+      .then((pokemon: any) => {
+        const attack = pokemon?.stats.find((stat: any) => stat.stat.name === 'attack')?.base_stat;
+        if (attack && attack >= 50) {
+          console.log('El Pokémon te '+ attack +' punts del atac.');
+        } else {
+          console.log('Promesa Rebutjada! El Pokémon no te suficients punts.');
+        }
+        this.pokemonImage = pokemon?.sprites?.front_default;
+      })
+      .catch((error) => {
+        console.log('Error:', error);
+      });
+  }
 
   ngOnInit(): void {
   }
